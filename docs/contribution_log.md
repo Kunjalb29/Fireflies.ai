@@ -14,3 +14,6 @@ Applied black formatter to all python files in the backend directory.
 ### 2026-06-23 12:00:00 - docs: add database schema description
 Documented the SQLAlchemy models and their relationships in a new database section.
 
+### 2026-06-23 13:00:00 - chore: update backend requirements.txt
+Pinned dependency versions for fastapi, uvicorn, and sqlalchemy.
+
