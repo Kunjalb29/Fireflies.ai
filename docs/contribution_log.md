@@ -20,3 +20,6 @@ Pinned dependency versions for fastapi, uvicorn, and sqlalchemy.
 ### 2026-06-23 14:00:00 - test: add basic unit tests for meeting creation
 Created test cases for validating meeting creation input schemas.
 
+### 2026-06-23 15:00:00 - docs: document transcript parsing logic
+Added inline comments explaining the regex-based transcript segment parsing.
+
