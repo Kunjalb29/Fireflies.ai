@@ -11,3 +11,6 @@ Removed unused imports from app/api/meetings.py to improve code readability.
 ### 2026-06-23 11:00:00 - style: format backend code using black
 Applied black formatter to all python files in the backend directory.
 
+### 2026-06-23 12:00:00 - docs: add database schema description
+Documented the SQLAlchemy models and their relationships in a new database section.
+
