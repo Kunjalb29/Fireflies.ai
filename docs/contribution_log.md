@@ -23,3 +23,6 @@ Created test cases for validating meeting creation input schemas.
 ### 2026-06-23 15:00:00 - docs: document transcript parsing logic
 Added inline comments explaining the regex-based transcript segment parsing.
 
+### 2026-06-23 16:00:00 - refactor: optimize database connection pool
+Adjusted pool size and max overflow settings for async engine.
+
