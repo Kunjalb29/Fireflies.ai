@@ -41,3 +41,6 @@ Created a markdown file outlining the layout and component tree.
 ### 2026-06-24 13:00:00 - chore: update package.json dependencies
 Updated minor versions of radix-ui and lucide-react.
 
+### 2026-06-24 14:00:00 - test: add validation tests for action items
+Wrote unit tests for verifying due dates and priority validation.
+
