@@ -35,3 +35,6 @@ Cleaned up indentation and code style across all Next.js pages.
 ### 2026-06-24 11:00:00 - refactor: optimize Zustand store organization
 Split player store and UI store into separate files for modularity.
 
+### 2026-06-24 12:00:00 - docs: add frontend component hierarchy
+Created a markdown file outlining the layout and component tree.
+
