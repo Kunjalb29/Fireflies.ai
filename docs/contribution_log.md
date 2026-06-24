@@ -47,3 +47,6 @@ Wrote unit tests for verifying due dates and priority validation.
 ### 2026-06-24 15:00:00 - docs: document global search architecture
 Explained how the search query matches across meetings and transcripts.
 
+### 2026-06-24 16:00:00 - perf: optimize transcript search query
+Added SQL index suggestions for transcript text column.
+
