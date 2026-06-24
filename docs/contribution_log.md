@@ -29,3 +29,6 @@ Adjusted pool size and max overflow settings for async engine.
 ### 2026-06-24 09:00:00 - docs: document action items API
 Added specifications for /action-items CRUD endpoints.
 
+### 2026-06-24 10:00:00 - style: format frontend codebase with prettier
+Cleaned up indentation and code style across all Next.js pages.
+
