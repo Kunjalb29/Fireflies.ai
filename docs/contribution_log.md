@@ -44,3 +44,6 @@ Updated minor versions of radix-ui and lucide-react.
 ### 2026-06-24 14:00:00 - test: add validation tests for action items
 Wrote unit tests for verifying due dates and priority validation.
 
+### 2026-06-24 15:00:00 - docs: document global search architecture
+Explained how the search query matches across meetings and transcripts.
+
