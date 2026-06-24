@@ -32,3 +32,6 @@ Added specifications for /action-items CRUD endpoints.
 ### 2026-06-24 10:00:00 - style: format frontend codebase with prettier
 Cleaned up indentation and code style across all Next.js pages.
 
+### 2026-06-24 11:00:00 - refactor: optimize Zustand store organization
+Split player store and UI store into separate files for modularity.
+
