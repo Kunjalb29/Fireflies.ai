@@ -62,3 +62,6 @@ Refined dark mode background and border colors for better contrast.
 ### 2026-06-25 12:00:00 - docs: document export formats
 Added details on PDF, Markdown, and TXT export implementations.
 
+### 2026-06-25 13:00:00 - chore: add eslint rules for unused variables
+Configured eslint to warn on unused imports and variables.
+
