@@ -59,3 +59,6 @@ Added global axios interceptor for handling 401 and 403 errors.
 ### 2026-06-25 11:00:00 - style: update color variables in globals.css
 Refined dark mode background and border colors for better contrast.
 
+### 2026-06-25 12:00:00 - docs: document export formats
+Added details on PDF, Markdown, and TXT export implementations.
+
