@@ -65,3 +65,6 @@ Added details on PDF, Markdown, and TXT export implementations.
 ### 2026-06-25 13:00:00 - chore: add eslint rules for unused variables
 Configured eslint to warn on unused imports and variables.
 
+### 2026-06-25 14:00:00 - test: add integration tests for summary generation
+Simulated Claude API responses to verify summary parsing.
+
