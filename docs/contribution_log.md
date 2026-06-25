@@ -71,3 +71,6 @@ Simulated Claude API responses to verify summary parsing.
 ### 2026-06-25 15:00:00 - docs: document theme switching mechanism
 Explained how data-theme attribute is toggled on documentElement.
 
+### 2026-06-25 16:00:00 - refactor: clean up redundant CSS utility classes
+Removed unused custom utility classes from globals.css.
+
