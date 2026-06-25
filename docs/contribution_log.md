@@ -53,3 +53,6 @@ Added SQL index suggestions for transcript text column.
 ### 2026-06-25 09:00:00 - docs: document AI summary service
 Added architecture diagram and notes on Anthropic Claude integration.
 
+### 2026-06-25 10:00:00 - refactor: enhance error handling in API client
+Added global axios interceptor for handling 401 and 403 errors.
+
