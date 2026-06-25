@@ -56,3 +56,6 @@ Added architecture diagram and notes on Anthropic Claude integration.
 ### 2026-06-25 10:00:00 - refactor: enhance error handling in API client
 Added global axios interceptor for handling 401 and 403 errors.
 
+### 2026-06-25 11:00:00 - style: update color variables in globals.css
+Refined dark mode background and border colors for better contrast.
+
