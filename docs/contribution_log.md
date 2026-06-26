@@ -83,3 +83,6 @@ Adjusted padding and sidebar transition for smaller screen sizes.
 ### 2026-06-26 11:00:00 - refactor: improve typescript interfaces in types/index.ts
 Added strict types for MeetingDetail and TranscriptSegment.
 
+### 2026-06-26 12:00:00 - docs: add deployment guide
+Documented PM2 and Nginx setup for hosting the application.
+
