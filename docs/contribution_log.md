@@ -80,3 +80,6 @@ Added guide on how color-coded highlights are persisted in DB.
 ### 2026-06-26 10:00:00 - style: refine layout responsiveness on mobile
 Adjusted padding and sidebar transition for smaller screen sizes.
 
+### 2026-06-26 11:00:00 - refactor: improve typescript interfaces in types/index.ts
+Added strict types for MeetingDetail and TranscriptSegment.
+
