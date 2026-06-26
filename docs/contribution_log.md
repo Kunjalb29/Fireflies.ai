@@ -74,3 +74,6 @@ Explained how data-theme attribute is toggled on documentElement.
 ### 2026-06-25 16:00:00 - refactor: clean up redundant CSS utility classes
 Removed unused custom utility classes from globals.css.
 
+### 2026-06-26 09:00:00 - docs: document transcript segment highlighting
+Added guide on how color-coded highlights are persisted in DB.
+
