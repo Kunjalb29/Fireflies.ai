@@ -95,3 +95,6 @@ Verified debouncing behavior and minimum character length constraints.
 ### 2026-06-26 15:00:00 - docs: document keyboard shortcuts
 Listed all supported global shortcuts including Cmd+K search.
 
+### 2026-06-26 16:00:00 - perf: optimize static page generation paths
+Configured dynamic rendering options for meeting detail pages.
+
