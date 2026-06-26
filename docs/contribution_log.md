@@ -86,3 +86,6 @@ Added strict types for MeetingDetail and TranscriptSegment.
 ### 2026-06-26 12:00:00 - docs: add deployment guide
 Documented PM2 and Nginx setup for hosting the application.
 
+### 2026-06-26 13:00:00 - chore: configure gitignore for backend and frontend
+Excluded virtual environments, node_modules, and local database files.
+
