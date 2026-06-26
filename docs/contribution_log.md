@@ -89,3 +89,6 @@ Documented PM2 and Nginx setup for hosting the application.
 ### 2026-06-26 13:00:00 - chore: configure gitignore for backend and frontend
 Excluded virtual environments, node_modules, and local database files.
 
+### 2026-06-26 14:00:00 - test: add test coverage for search query input
+Verified debouncing behavior and minimum character length constraints.
+
