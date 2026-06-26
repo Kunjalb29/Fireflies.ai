@@ -92,3 +92,6 @@ Excluded virtual environments, node_modules, and local database files.
 ### 2026-06-26 14:00:00 - test: add test coverage for search query input
 Verified debouncing behavior and minimum character length constraints.
 
+### 2026-06-26 15:00:00 - docs: document keyboard shortcuts
+Listed all supported global shortcuts including Cmd+K search.
+
