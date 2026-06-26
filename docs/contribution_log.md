@@ -77,3 +77,6 @@ Removed unused custom utility classes from globals.css.
 ### 2026-06-26 09:00:00 - docs: document transcript segment highlighting
 Added guide on how color-coded highlights are persisted in DB.
 
+### 2026-06-26 10:00:00 - style: refine layout responsiveness on mobile
+Adjusted padding and sidebar transition for smaller screen sizes.
+
