@@ -4,7 +4,7 @@
  * Full-featured action item with checkbox, inline edit, assignee, due date, priority.
  */
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Check, Trash2, Pencil, Calendar, User, Flag } from "lucide-react";
 import { cn, formatDueDate, getPriorityConfig } from "@/lib/utils";
 import type { ActionItem, Priority } from "@/types";

@@ -6,10 +6,9 @@
 import { useState, useCallback, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowLeft, Share2, Download, Trash2, Edit, Plus, Search,
-  ChevronLeft, ChevronRight, X, Tag
+  ArrowLeft, Share2, Download, Trash2, Edit, Search,
+  ChevronLeft, ChevronRight, X
 } from "lucide-react";
 import {
   getMeeting, generateSummary, updateActionItem, createActionItem,
@@ -349,14 +348,13 @@ export default function MeetingDetailPage() {
                 No transcript available for this meeting.
               </div>
             ) : (
-              segments.map((seg, i) => (
+              segments.map((seg) => (
                 <TranscriptSegmentView
                   key={seg.id}
                   segment={seg}
                   isActive={activeSegmentId === seg.id}
                   onHighlight={handleHighlight}
                   searchQuery={transcriptQuery}
-                  isSearchMatch={matchingIds.includes(seg.id)}
                   isCurrentMatch={matchingIds[currentMatchIndex] === seg.id || seg.id === highlightFromParam}
                 />
               ))

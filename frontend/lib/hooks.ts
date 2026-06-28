@@ -1,7 +1,7 @@
 /**
  * Custom React hooks for MeetMind.
  */
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect } from "react";
 
 /**
  * Debounce a value by the specified delay in milliseconds.

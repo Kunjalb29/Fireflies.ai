@@ -5,7 +5,7 @@
  */
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Clock, Users, CheckSquare, Tag, Calendar, Eye, Edit, Trash2 } from "lucide-react";
+import { Clock, CheckSquare, Calendar, Edit, Trash2 } from "lucide-react";
 import { cn, formatDuration, formatRelativeDate, formatAbsoluteDate, getInitials, getSpeakerColor, truncate } from "@/lib/utils";
 import type { MeetingListItem } from "@/types";
 import { useState } from "react";

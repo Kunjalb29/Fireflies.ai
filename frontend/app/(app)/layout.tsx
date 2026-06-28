@@ -3,6 +3,7 @@
  * App layout shared by all authenticated pages (/meetings, /search, etc.)
  * Includes sidebar, top bar, and search modal.
  */
+import { useEffect } from "react";
 import { Sidebar } from "@/components/Sidebar";
 import { SearchModal } from "@/components/SearchModal";
 import { useUIStore } from "@/store";
@@ -10,7 +11,19 @@ import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
-  const { sidebarCollapsed, toggleMobileSidebar } = useUIStore();
+  const { sidebarCollapsed, toggleMobileSidebar, setSearchModalOpen } = useUIStore();
+
+  // ⌘K / Ctrl+K → open global search
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchModalOpen(true);
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [setSearchModalOpen]);
 
   return (
     <div className="min-h-screen bg-bg-dark flex">

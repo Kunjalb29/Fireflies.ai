@@ -3,19 +3,19 @@
  * Search Page — /search?q=...
  * Full-page search with grouped results.
  */
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { Search, FileText, CheckSquare, ArrowRight, Mic } from "lucide-react";
 import { globalSearch } from "@/lib/services";
-import { useDebounce, addRecentSearch } from "@/lib/utils";
+import { useDebounce } from "@/lib/hooks";
 import { formatRelativeDate } from "@/lib/utils";
 import { SkeletonCard } from "@/components/SkeletonCard";
 import { EmptyState } from "@/components/EmptyState";
 import Link from "next/link";
 
-export default function SearchPage() {
+function SearchPageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [query, setQuery] = useState(searchParams.get("q") || "");
@@ -107,8 +107,7 @@ export default function SearchPage() {
                   href={`/meetings/${item.meeting_id}?highlight=${item.id}`}
                   title={item.title}
                   snippet={item.snippet || undefined}
-                  subtitle={`${(item as any).speaker_name || ""} · ${item.date ? formatRelativeDate(item.date) : ""}`}
-                  query={query}
+                  subtitle={`${(item as unknown as { speaker_name?: string }).speaker_name || ""} · ${item.date ? formatRelativeDate(item.date) : ""}`}
                   icon={<Mic className="w-4 h-4 text-accent" />}
                 />
               ))}
@@ -135,6 +134,23 @@ export default function SearchPage() {
   );
 }
 
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+      <div className="p-6 max-w-3xl mx-auto">
+        <h1 className="text-2xl font-bold text-white mb-6">Search</h1>
+        <div className="space-y-3">
+          <div className="h-12 bg-white/5 rounded-input w-full mb-8 animate-pulse" />
+          <div className="h-24 bg-white/5 rounded-card w-full animate-pulse" />
+          <div className="h-24 bg-white/5 rounded-card w-full animate-pulse" />
+        </div>
+      </div>
+    }>
+      <SearchPageContent />
+    </Suspense>
+  );
+}
+
 function ResultGroup({ title, count, children }: { title: string; count: number; children: React.ReactNode }) {
   return (
     <div>
@@ -148,13 +164,12 @@ function ResultGroup({ title, count, children }: { title: string; count: number;
 }
 
 function ResultCard({
-  href, title, subtitle, snippet, query, icon
+  href, title, subtitle, snippet, icon
 }: {
   href: string;
   title: string;
   subtitle?: string;
   snippet?: string;
-  query?: string;
   icon: React.ReactNode;
 }) {
   return (

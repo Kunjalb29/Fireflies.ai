@@ -2,7 +2,7 @@
 /**
  * Global Search Modal — Cmd+K search with real-time results and recent searches.
  */
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Clock, FileText, CheckSquare, X, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -155,7 +155,7 @@ export function SearchModal() {
 
               {!isLoading && results && totalResults === 0 && (
                 <div className="p-8 text-center text-sm text-text-muted-dark">
-                  No results for "{query}"
+                  No results for &ldquo;{query}&rdquo;
                 </div>
               )}
 
@@ -165,7 +165,7 @@ export function SearchModal() {
                   {results.meetings.length > 0 && (
                     <ResultSection title="Meetings">
                       {results.meetings.map((item) => (
-                        <ResultRow key={item.id} item={item} query={query} onClick={() => navigateTo(item)} icon={<FileText className="w-4 h-4" />} />
+                        <ResultRow key={item.id} item={item} onClick={() => navigateTo(item)} icon={<FileText className="w-4 h-4" />} />
                       ))}
                     </ResultSection>
                   )}
@@ -174,7 +174,7 @@ export function SearchModal() {
                   {results.transcripts.length > 0 && (
                     <ResultSection title="Transcript Matches">
                       {results.transcripts.map((item) => (
-                        <ResultRow key={item.id} item={item} query={query} onClick={() => navigateTo(item)} icon={<FileText className="w-4 h-4 text-accent" />} showSnippet />
+                        <ResultRow key={item.id} item={item} onClick={() => navigateTo(item)} icon={<FileText className="w-4 h-4 text-accent" />} showSnippet />
                       ))}
                     </ResultSection>
                   )}
@@ -183,7 +183,7 @@ export function SearchModal() {
                   {results.action_items.length > 0 && (
                     <ResultSection title="Action Items">
                       {results.action_items.map((item) => (
-                        <ResultRow key={item.id} item={item} query={query} onClick={() => navigateTo(item)} icon={<CheckSquare className="w-4 h-4 text-success" />} />
+                        <ResultRow key={item.id} item={item} onClick={() => navigateTo(item)} icon={<CheckSquare className="w-4 h-4 text-success" />} />
                       ))}
                     </ResultSection>
                   )}
@@ -215,9 +215,8 @@ function ResultSection({ title, children }: { title: string; children: React.Rea
   );
 }
 
-function ResultRow({ item, query, onClick, icon, showSnippet }: {
+function ResultRow({ item, onClick, icon, showSnippet }: {
   item: SearchResultItem;
-  query: string;
   onClick: () => void;
   icon: React.ReactNode;
   showSnippet?: boolean;

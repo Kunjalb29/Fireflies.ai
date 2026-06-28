@@ -74,7 +74,6 @@ function downloadFile(content: string, filename: string, type: string) {
 
 function exportPDF(meeting: MeetingDetail) {
   // Use browser print as PDF fallback (jsPDF would need more setup for full styling)
-  const content = buildMarkdown(meeting);
   const printWindow = window.open("", "_blank");
   if (!printWindow) return;
   printWindow.document.write(`

@@ -2,10 +2,10 @@
 /**
  * Meetings Library Page — Main app view showing all meetings.
  */
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Search, LayoutGrid, List, BarChart2, Clock, CheckSquare, Calendar, SlidersHorizontal } from "lucide-react";
+import { Plus, Search, BarChart2, Clock, CheckSquare, Calendar, SlidersHorizontal } from "lucide-react";
 import { getMeetings, deleteMeeting, getStats } from "@/lib/services";
 import { MeetingCard } from "@/components/MeetingCard";
 import { StatsCard } from "@/components/StatsCard";
@@ -14,7 +14,7 @@ import { EmptyState } from "@/components/EmptyState";
 import { ConfirmModal } from "@/components/ConfirmModal";
 import { NewMeetingDrawer } from "@/components/NewMeetingDrawer";
 import { useUIStore } from "@/store";
-import { formatDuration } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import type { MeetingListItem } from "@/types";
 import toast from "react-hot-toast";
 
@@ -26,15 +26,31 @@ const SORT_OPTIONS = [
 
 export default function MeetingsPage() {
   const queryClient = useQueryClient();
-  const { setNewMeetingDrawerOpen, newMeetingDrawerOpen } = useUIStore();
+  const { setNewMeetingDrawerOpen, newMeetingDrawerOpen, setSearchModalOpen } = useUIStore();
 
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState<"recent" | "oldest" | "longest">("recent");
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [dateFilter, setDateFilter] = useState<"all" | "week" | "month">("all");
+
+  const getDateRange = () => {
+    const now = new Date();
+    if (dateFilter === "week") {
+      const from = new Date(now);
+      from.setDate(from.getDate() - 7);
+      return { date_from: from.toISOString(), date_to: undefined };
+    }
+    if (dateFilter === "month") {
+      const from = new Date(now);
+      from.setDate(from.getDate() - 30);
+      return { date_from: from.toISOString(), date_to: undefined };
+    }
+    return { date_from: undefined, date_to: undefined };
+  };
 
   const { data: meetingsData, isLoading: meetingsLoading } = useQuery({
-    queryKey: ["meetings", { search, sort }],
-    queryFn: () => getMeetings({ search: search || undefined, sort, limit: 50 }),
+    queryKey: ["meetings", { search, sort, dateFilter }],
+    queryFn: () => getMeetings({ search: search || undefined, sort, limit: 50, ...getDateRange() }),
   });
 
   const { data: statsData, isLoading: statsLoading } = useQuery({
@@ -124,8 +140,9 @@ export default function MeetingsPage() {
             id="meetings-search"
           />
           <button
-            onClick={() => {}}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-text-muted-dark bg-white/5 border border-white/10 rounded px-1.5 py-0.5 font-mono hidden md:block"
+            onClick={() => setSearchModalOpen(true)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-text-muted-dark bg-white/5 border border-white/10 rounded px-1.5 py-0.5 font-mono hidden md:block hover:bg-white/10 transition-colors cursor-pointer"
+            title="Open global search (⌘K)"
           >
             ⌘K
           </button>
@@ -134,14 +151,24 @@ export default function MeetingsPage() {
         {/* Filter row */}
         <div className="flex items-center gap-2 flex-wrap">
           <div className="flex items-center gap-1 bg-white/[0.04] border border-white/[0.08] rounded-button p-0.5">
-            {["All", "This Week", "This Month"].map((label) => (
-              <button
-                key={label}
-                className="px-3 py-1.5 rounded-[6px] text-xs font-medium transition-all duration-150 text-text-muted-dark hover:text-white first:bg-white/10 first:text-white"
-              >
-                {label}
-              </button>
-            ))}
+            {(["All", "This Week", "This Month"] as const).map((label, i) => {
+              const value = ["all", "week", "month"][i] as "all" | "week" | "month";
+              const isActive = dateFilter === value;
+              return (
+                <button
+                  key={label}
+                  onClick={() => setDateFilter(value)}
+                  className={cn(
+                    "px-3 py-1.5 rounded-[6px] text-xs font-medium transition-all duration-150",
+                    isActive
+                      ? "bg-white/10 text-white"
+                      : "text-text-muted-dark hover:text-white"
+                  )}
+                >
+                  {label}
+                </button>
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-1.5 ml-auto">

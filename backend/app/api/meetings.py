@@ -8,6 +8,7 @@ from typing import Optional, List
 from fastapi import APIRouter, Depends, HTTPException, Query, UploadFile, File, Form, Header
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func, or_, and_, desc, asc
+from sqlalchemy.orm import selectinload
 from app.db.database import get_db
 from app.models.models import Meeting, Transcript, TranscriptSegment, Summary, ActionItem, Tag, MeetingTag, User, generate_uuid, now
 from app.schemas.schemas import (
@@ -254,6 +255,7 @@ async def get_meeting(
         segments_result = await db.execute(
             select(TranscriptSegment)
             .where(TranscriptSegment.transcript_id == transcript.id)
+            .options(selectinload(TranscriptSegment.highlights))
             .order_by(TranscriptSegment.segment_index)
         )
         segments = segments_result.scalars().all()

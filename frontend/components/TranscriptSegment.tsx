@@ -6,7 +6,7 @@
 import { useRef, useEffect, memo } from "react";
 import { Highlighter, Copy, Clock } from "lucide-react";
 import { cn, getInitials, getSpeakerColor, formatSeconds, highlightText } from "@/lib/utils";
-import { usePlayerStore, useTranscriptSearchStore } from "@/store";
+import { usePlayerStore } from "@/store";
 import type { TranscriptSegment as TranscriptSegmentType, HighlightColor } from "@/types";
 import toast from "react-hot-toast";
 
@@ -15,7 +15,6 @@ interface TranscriptSegmentProps {
   isActive: boolean;
   onHighlight: (segmentId: string, color: HighlightColor) => void;
   searchQuery: string;
-  isSearchMatch?: boolean;
   isCurrentMatch?: boolean;
 }
 
@@ -36,7 +35,7 @@ function getHighlightClass(color: HighlightColor): string {
 }
 
 export const TranscriptSegmentView = memo(function TranscriptSegmentView({
-  segment, isActive, onHighlight, searchQuery, isSearchMatch, isCurrentMatch
+  segment, isActive, onHighlight, searchQuery, isCurrentMatch
 }: TranscriptSegmentProps) {
   const segRef = useRef<HTMLDivElement>(null);
   const { seekTo } = usePlayerStore();
@@ -72,7 +71,7 @@ export const TranscriptSegmentView = memo(function TranscriptSegmentView({
       ref={segRef}
       id={`segment-${segment.id}`}
       className={cn(
-        "segment",
+        "segment group",
         isActive && "active",
         highlightClass,
         isCurrentMatch && "ring-1 ring-primary/50"

@@ -6,11 +6,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, RefreshCw, ChevronDown, ChevronRight, Plus, CheckSquare } from "lucide-react";
-import { cn, getSentimentConfig, formatSeconds, formatDueDate, getPriorityConfig } from "@/lib/utils";
+import { cn, getSentimentConfig, formatSeconds } from "@/lib/utils";
+
 import { usePlayerStore } from "@/store";
 import { ActionItemCard } from "./ActionItemCard";
 import type { Summary, ActionItem, Priority } from "@/types";
-import toast from "react-hot-toast";
 
 interface SummaryPanelProps {
   summary: Summary | null;
@@ -29,7 +29,7 @@ type Tab = typeof TABS[number];
 
 export function SummaryPanel({
   summary, actionItems, onRegenerateSummary, onToggleActionItem,
-  onUpdateActionItem, onDeleteActionItem, onAddActionItem, isRegenerating, meetingId
+  onUpdateActionItem, onDeleteActionItem, onAddActionItem, isRegenerating
 }: SummaryPanelProps) {
   const [activeTab, setActiveTab] = useState<Tab>("Summary");
   const [showCompleted, setShowCompleted] = useState(false);

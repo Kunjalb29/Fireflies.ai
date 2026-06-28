@@ -4,7 +4,7 @@
  * Theme toggle, account info, integrations (coming soon), upgrade CTA.
  */
 import { motion } from "framer-motion";
-import { Moon, Sun, Crown, Zap, Plug, Bell, Shield, LogOut, ChevronRight } from "lucide-react";
+import { Moon, Sun, Crown, Zap, Shield, LogOut, ChevronRight } from "lucide-react";
 import { useThemeStore } from "@/store";
 import { cn } from "@/lib/utils";
 

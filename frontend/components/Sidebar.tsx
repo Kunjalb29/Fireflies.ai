@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, Search, CheckSquare, Settings, ChevronLeft,
-  ChevronRight, Sparkles, Radio, Menu, X, Crown
+  ChevronRight, Sparkles, Radio, Crown
 } from "lucide-react";
 import { useUIStore } from "@/store";
 import { cn } from "@/lib/utils";
@@ -27,7 +27,7 @@ interface SidebarProps {
 
 export function Sidebar({ className }: SidebarProps) {
   const pathname = usePathname();
-  const { sidebarCollapsed, toggleSidebar, sidebarMobileOpen, toggleMobileSidebar, setNewMeetingDrawerOpen, setSearchModalOpen } = useUIStore();
+  const { sidebarCollapsed, toggleSidebar, sidebarMobileOpen, toggleMobileSidebar } = useUIStore();
 
   const isActive = (href: string) => pathname.startsWith(href);
 

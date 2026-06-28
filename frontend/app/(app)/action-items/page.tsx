@@ -6,12 +6,12 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckSquare, ChevronDown, ChevronRight, Flag } from "lucide-react";
-import { getAllActionItems, updateActionItem } from "@/lib/services";
+import { CheckSquare, ChevronDown, ChevronRight } from "lucide-react";
+import { getAllActionItems, updateActionItem, deleteActionItem } from "@/lib/services";
 import { ActionItemCard } from "@/components/ActionItemCard";
 import { SkeletonCard } from "@/components/SkeletonCard";
 import { EmptyState } from "@/components/EmptyState";
-import { cn, getPriorityConfig } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import type { ActionItem } from "@/types";
 import toast from "react-hot-toast";
 import Link from "next/link";
@@ -50,6 +50,15 @@ export default function ActionItemsPage() {
     mutationFn: ({ id, data }: { id: string; data: Partial<ActionItem> }) =>
       updateActionItem(id, data as Parameters<typeof updateActionItem>[1]),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["all-action-items"] }),
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: (id: string) => deleteActionItem(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["all-action-items"] });
+      toast.success("Action item deleted");
+    },
+    onError: () => toast.error("Failed to delete action item"),
   });
 
   // Group by meeting
@@ -155,7 +164,7 @@ export default function ActionItemsPage() {
                           item={item}
                           onToggle={(id, status) => toggleMutation.mutate({ id, status })}
                           onUpdate={(id, data) => updateMutation.mutate({ id, data })}
-                          onDelete={() => {}} // deletion handled inline
+                          onDelete={(id) => deleteMutation.mutate(id)}
                         />
                       ))}
                     </motion.div>
